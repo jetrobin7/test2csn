@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .calendar-container {
+            margin-left: 300px; /* Matches the sidebar width */
+            padding: 20px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            transition: margin-left 0.3s ease;
+            flex: 1;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .nav-buttons button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .nav-buttons button:hover {
+            background-color: #45a049;
+        }
+        .week-display {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .no-appointments {
+            color: red;  /* Change the color as needed */
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .time-slot {
+            font-weight: bold;
+        }
+        .day-header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+        @media (max-width: 768px) {
+            td, th {
+                font-size: 12px;
+                padding: 6px;
+            }
+            td {
+                height: 80px;
+            }
+            .nav-buttons button {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/sidebar') %>
+    <%- include('../partials/navbar') %>
+
+    <div class="calendar-container">
+        <h1>Teacher Schedule</h1>
+        
+        <div class="nav-buttons">
+            <button onclick="navigateWeek(-1)">&lt; Previous Week</button>
+            <div class="week-display">Week of <%= dateRangeDisplay %></div>
+            <button onclick="navigateWeek(1)">Next Week &gt;</button>
+        </div>
+    
+        <% if (appointments.length === 0) { %>
+            <div class="no-appointments">No appointment schedule</div>
+        <% } else { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="day-header">Time Slot</th>
+                        <th class="day-header">Monday <br><strong>(<%= weekDates.MondayDateOnly %>)</strong></th>
+                        <th class="day-header">Tuesday <br><strong>(<%= weekDates.TuesdayDateOnly %>)</strong></th>
+                        <th class="day-header">Wednesday <br><strong>(<%= weekDates.WednesdayDateOnly %>)</strong></th>
+                        <th class="day-header">Thursday <br><strong>(<%= weekDates.ThursdayDateOnly %>)</strong></th>
+                        <th class="day-header">Friday <br><strong>(<%= weekDates.FridayDateOnly %>)</strong></th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <% uniqueTimeSlots.forEach(function(timeSlot) { %>
+                        <tr>
+                            <td class="time-slot"><%= timeSlot %></td>
+                            <% ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].forEach(function(day) { %>
+                                <td>
+                                    <% (groupedAppointments[day][timeSlot] || []).forEach(teacher => { %>
+                                        <div><%= teacher %></div>
+                                    <% }); %>
+                                </td>
+                            <% }); %>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+    <script>
+        function navigateWeek(offset) {
+            const currentUrl = new URL(window.location.href);
+            const selectedDate = currentUrl.searchParams.get('selectedDate') || moment().format('YYYY-MM-DD');
+            const newDate = moment(selectedDate, 'YYYY-MM-DD').add(offset, 'weeks').format('YYYY-MM-DD');
+            currentUrl.searchParams.set('selectedDate', newDate);
+            window.location.href = currentUrl.toString();
+        }
+    </script>
+    
+</body>
+</html>

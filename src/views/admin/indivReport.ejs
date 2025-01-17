@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Individual Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .section-title {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .print-button {
+      margin-top: 20px;
+    }
+  </style>
+  <script>
+    function printReport() {
+      window.print();
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Student Individual Report</h1>
+  </header>
+
+  <form action="/admin/indivReport/details" method="GET">
+    <label for="csnNumber">CSN Number:</label>
+    <input type="text" id="csnNumber" name="csnNumber" required>
+    <button type="submit">Search</button>
+  </form>
+
+ 
+</body>
+</html>

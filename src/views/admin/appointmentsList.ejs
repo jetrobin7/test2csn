@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointments</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Appointments for <%= teacher.firstName %> <%= teacher.lastName %></h1>
+  <table>
+    <thead>
+      <tr>
+        <th>CSN No.</th>
+        <th>Name</th>
+        <th>Therapy Type</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Attendance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% appointments.forEach(appointment => { %>
+        <tr>
+          <td><%= appointment.csnNo %></td>
+          <td><%= appointment.surname %>, <%= appointment.givenName %></td>
+          <td><%= appointment.therapyType %></td>
+          <td><%= appointment.appointmentDate.toDateString() %></td>
+          <td><%= appointment.appointmentTimeStart %> - <%= appointment.appointmentTimeEnd %></td>
+          <td><%= appointment.attendance %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>

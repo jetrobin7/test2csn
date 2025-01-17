@@ -1,0 +1,40 @@
+<!-- src/views/admin/studentProgress.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Progress</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Student Progress</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>CSN ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Diagnosis</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% students.forEach(student => { %>
+        <tr>
+          <td><%= student.csnNo %></td>
+          <td><%= student.surname %> <%= student.givenName %> <%= student.middleName %></td>
+          <td><%= student.age %> yrs old</td>
+          <td><%= student.gender %></td>
+          <td><%= student.diagnosis %></td>
+          <td>
+            <a href="/admin/studentProgress/<%= student._id %>" class="view-btn">View</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+</body>
+</html>
