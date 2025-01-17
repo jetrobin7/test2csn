@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const otpGenerator = require('otp-generator');
 const Teacher = require('../models/teacher');

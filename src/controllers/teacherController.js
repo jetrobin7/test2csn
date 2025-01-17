@@ -1,6 +1,6 @@
 const Teacher = require('../models/teacher');
 const Therapy = require('../models/therapy');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const renderAddTeacherPage = async (req, res) => {
     try {
