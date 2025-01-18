@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const otpGenerator = require('otp-generator');
 const SuperAdmin = require('../models/SuperAdmin');

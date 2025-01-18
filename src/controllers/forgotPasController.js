@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');  // To generate a secure reset token
 const SuperAdmin = require('../models/SuperAdmin'); // Ensure this points to the correct model file
