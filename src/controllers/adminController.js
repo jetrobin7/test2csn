@@ -62,6 +62,7 @@ exports.login = async (req, res) => {
 
     // Store the admin user ID in the session (no token, purely session-based)
     req.session.userId = admin._id;
+    req.session.role = 'user'
 
     return res.json({
       success: true,
