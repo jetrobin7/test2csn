@@ -185,10 +185,10 @@ router.get('/teacher/t_manage_appointment/search', tmanageAppointmentController.
 router.post('/teacher/t_manage_appointment/reschedule', tmanageAppointmentController.rescheduleAppointment);
 
 // Render the "Add New Student" form
-router.get('/t_add_new_student', taddnewStudentController.renderForm);
+router.get('/teacher/t_add_new_student', taddnewStudentController.renderForm);
 
 // Handle form submission
-router.post('/t_add_new_student', taddnewStudentController.addStudent);
+router.post('/teacher/t_add_new_student', taddnewStudentController.addStudent);
 
 // Route to list all teachers
 router.get('/admin/teachers', teachersListController.getTeacherList);

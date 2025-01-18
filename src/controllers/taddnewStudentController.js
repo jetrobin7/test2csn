@@ -3,7 +3,7 @@ const Student = require('../models/student'); // Ensure this points to your stud
 
 module.exports = {
     renderForm: (req, res) => {
-        res.render('teacher/t_add_new_student');
+        res.render('/teacher/t_add_new_student');
     },
 
     addStudent: async (req, res) => {
@@ -58,7 +58,7 @@ module.exports = {
             });
 
             await newStudent.save();
-            res.redirect('/t_add_new_student'); // Redirect or show a success page
+            res.redirect('/teacher/t_add_new_student'); // Redirect or show a success page
         } catch (error) {
             console.error(error);
             res.status(500).send('Server Error');
